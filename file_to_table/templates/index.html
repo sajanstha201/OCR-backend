@@ -1,0 +1,58 @@
+{% extends "base_template.html" %}
+
+{% block title %} Import {% endblock title %}
+{% comment %} {% block page_title %} Import {% endblock page_title %} {% endcomment %}
+
+{% block head_content%}
+<style>
+  .form-border {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+</style>
+{% endblock %}
+
+{% block page_title %}Table Extraction {% endblock %}
+{% block content %}
+
+<div class="container text-center">
+    <h2>Import from </h2>
+
+    <div class="row" style="margin-top:25px;">
+    <div class="col">
+      <div class="mb-3 form-border">
+        <form action = '#' method=post enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="formFile" class="form-label">File: </label>
+        <input class="form-control" type="file" id="inputfile" name="inputfile" accept="application/pdf" >
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+
+        </form>
+      </div>
+    </div>
+    <div class="col">
+        <div class="mb-3 form-border">
+          <form action ='#' method=post enctype="multipart/form-data">
+          {% csrf_token %}
+          
+          <label for="imagefile" class="form-label">Image: </label>
+          <input class="form-control" type="file" id="imagefile" name="imagefile" accept="image/jpeg,image/png,image/gif">
+          <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+
+          </div>
+    </div>
+    
+  </div>
+
+  {% if message %}
+    <div class = row>
+      {{message}}
+    </div>
+  {% endif %}
+
+
+</div>
+{% endblock %}
